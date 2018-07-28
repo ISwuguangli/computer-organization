@@ -1,0 +1,14 @@
+Ldi R9,AA
+Ldi R10,55
+Mov R3,R9
+Mov R4,R10
+add R3,R4
+sub R9,R10
+Mul R9,R9
+Mov R14,R4
+st X,R3
+nop
+RJMP 02
+Ldi R11,FF
+Ldi R12,FF
+Ld  R13,X
