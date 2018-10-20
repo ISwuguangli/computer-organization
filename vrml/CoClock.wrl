@@ -1,0 +1,144 @@
+#VRML V2.0 utf8
+PROTO clock[
+	field SFRotation dialRotation 1.0 0 0 1.57
+	field SFColor dialColor 0 0 1.0
+	field SFFloat dialRadius 2.0
+	field SFFloat dialHeight 0.1
+
+	field SFFloat localRadius 0.1
+	field SFColor localColor 1.0 1.0 0
+
+	field SFVec3f hourTranslation 0 0.6 0
+	field SFColor hourColor 1.0 1.0 0
+	field SFFloat hourRadius 0.1
+	field SFFloat hourHeight 1.0
+
+	field SFVec3f muniteTranslation 0.8 0 0
+	field SFRotation muniteRotation 0 0 1.0 1.57
+	field SFColor minuteColor 1.0 1.0 0
+	field SFFloat minuteRadius 0.1
+	field SFFloat minuteHeight 1.4
+
+	field SFColor dialPrintColor 0 1.0 0
+	field SFFloat dialPrintRadius 0.12
+]
+{
+	Transform {
+		children[
+			Transform {
+				rotation IS	dialRotation
+				children [
+					Shape {
+						appearance Appearance {
+							material Material {
+								diffuseColor IS	dialColor
+							}
+						}
+						geometry Cylinder {
+							radius IS dialRadius
+							height IS dialHeight
+						}
+					}
+				]
+			}
+			Transform {
+				translation IS hourTranslation
+				children [
+					Shape {
+						appearance Appearance {
+							material Material {
+								diffuseColor IS	hourColor
+							}
+						}
+						geometry Cylinder {
+							radius IS hourRadius
+							height IS hourHeight
+						}
+					}
+				]
+			}
+			Shape {
+				appearance Appearance {
+					material Material {
+						diffuseColor IS	localColor
+					}
+				}
+				geometry Sphere	{
+					radius IS localRadius
+				}
+			}
+			Transform {
+				translation	IS muniteTranslation
+				rotation IS	muniteRotation
+				children [
+					Shape {
+						appearance Appearance {
+							material Material {
+								diffuseColor IS	minuteColor
+							}
+						}
+						geometry Cylinder {
+							radius IS minuteRadius
+							height IS minuteHeight
+						}
+					}
+				]
+			}
+			DEF block Transform {
+				translation	0 1.7 0
+				children [
+					DEF dialPrint Shape {
+						appearance Appearance {
+							material Material {
+								diffuseColor IS	dialPrintColor
+							}
+						}
+						geometry Sphere	{
+							radius IS dialPrintRadius
+						}
+					}
+					Transform {
+						rotation 0 0 1.0 0.523
+						center 0 -1.7 0
+						children [
+							USE	dialPrint
+							Transform {
+								rotation 0 0 1.0 0.523
+								center 0 -1.7 0
+								children [
+									USE	dialPrint
+									Transform {
+										rotation 0 0 1.0 0.523
+										center 0 -1.7 0
+										children [
+											USE	dialPrint
+										]
+									}
+								]
+							}
+						]
+					}
+				]
+			}
+			Transform {
+				rotation 0 0 1.0 1.57
+				children [
+					USE	block
+					Transform {
+						rotation 0 0 1.0 1.57
+						children [
+							USE	block
+							Transform {
+								rotation 0 0 1.0 1.57
+								children [
+									USE	block
+								]
+							}
+						]
+					}
+				]
+			}
+		]
+	}
+} 
+clock {}
