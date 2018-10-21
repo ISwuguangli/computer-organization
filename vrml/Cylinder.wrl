@@ -1,5 +1,13 @@
 #VRML V2.0 utf8
 
+EXTERNPROTO	returnText [
+	field SFColor textColor 
+	field SFString textLocation 
+	field SFFloat size 
+	field SFString textStyle 
+	field MFString justify 	
+]
+"returnProto.wrl"
 Shape {
 	appearance Appearance {
 		material Material {
@@ -7,6 +15,18 @@ Shape {
 		}
 	}
 	geometry Cylinder {
-		
+		radius 1
+		height 3
 	}
+}
+Anchor {
+	children [
+		Transform {
+			translation 2 -1.5 3
+			children [
+			returnText {}
+			]
+		}
+	]
+	url	["A_MainScene.wrl"]
 }

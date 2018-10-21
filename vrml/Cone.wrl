@@ -1,5 +1,14 @@
 #VRML V2.0 utf8
 
+EXTERNPROTO	returnText [
+	field SFColor textColor 
+	field SFString textLocation 
+	field SFFloat size 
+	field SFString textStyle 
+	field MFString justify 	
+]
+"returnProto.wrl"
+
 Transform {
 	rotation 1.0 0 0 3.14
 	children [
@@ -14,4 +23,15 @@ Transform {
 			}
 		}
 	]
+}
+Anchor {
+	children [
+		Transform {
+			translation 2 -1.5 2
+			children [
+			returnText {}
+			]
+		}
+	]
+	url	["A_MainScene.wrl"]
 }

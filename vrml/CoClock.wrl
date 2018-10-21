@@ -1,4 +1,13 @@
 #VRML V2.0 utf8
+
+EXTERNPROTO	returnText [
+	field SFColor textColor 
+	field SFString textLocation 
+	field SFFloat size 
+	field SFString textStyle 
+	field MFString justify 	
+]
+"returnProto.wrl"
 PROTO clock[
 	field SFRotation dialRotation 1.0 0 0 1.57
 	field SFColor dialColor 0 0 1.0
@@ -19,6 +28,8 @@ PROTO clock[
 	field SFFloat minuteRadius 0.1
 	field SFFloat minuteHeight 1.4
 
+	field SFVec3f dialPrintTranslation 0 1.7 0
+	field SFVec3f dialPrintCenter 0 -1.7 0
 	field SFColor dialPrintColor 0 1.0 0
 	field SFFloat dialPrintRadius 0.12
 ]
@@ -85,7 +96,7 @@ PROTO clock[
 				]
 			}
 			DEF block Transform {
-				translation	0 1.7 0
+				translation	IS dialPrintTranslation
 				children [
 					DEF dialPrint Shape {
 						appearance Appearance {
@@ -99,17 +110,17 @@ PROTO clock[
 					}
 					Transform {
 						rotation 0 0 1.0 0.523
-						center 0 -1.7 0
+						center IS dialPrintCenter
 						children [
 							USE	dialPrint
 							Transform {
 								rotation 0 0 1.0 0.523
-								center 0 -1.7 0
+								center IS dialPrintCenter
 								children [
 									USE	dialPrint
 									Transform {
 										rotation 0 0 1.0 0.523
-										center 0 -1.7 0
+										center IS dialPrintCenter
 										children [
 											USE	dialPrint
 										]
@@ -137,6 +148,17 @@ PROTO clock[
 						]
 					}
 				]
+			}
+			Anchor {
+				children [
+					Transform {
+						translation	3 -2.1 2
+						children [
+							returnText {}
+						]
+					}
+				]
+				url	["A_MainScene.wrl"]
 			}
 		]
 	}

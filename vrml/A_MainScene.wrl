@@ -1,19 +1,30 @@
 #VRML V2.0 utf8
 
-Transform {
+Anchor {
 	children [
-		Inline { url "ConeText.wrl"}
+		Inline { url "ConeText.wrl" }
+	]
+	url	["Cone.wrl"]
+}
+Anchor {
+	children [
 		Transform {
 			translation	0 2.0 0
 			children [
-				Inline { url "CylinderText.wrl"}
-			]
+				Inline { url "CylinderText.wrl" }
+			]			  
 		}
+	]
+	url	["Cylinder.wrl"]
+}
+Anchor {
+	children [
 		Transform {
-			translation	0 -2.0 0 
+			translation	0 -2 0
 			children [
-				Inline { url "CoClockText.wrl"}
+				Inline { url "CoClockText.wrl" }
 			]
 		}
 	]
+	url	["CoClock.wrl"]
 }
